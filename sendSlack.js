@@ -9,7 +9,7 @@ function sendSlack_range(e) {
       "text": "---------------------------------------------------------" + "\n" + " <- "+ cellvalue + "\n 추가날짜: " + new Date()
     })
   };
-  if (cellvalue.includes('고진형') || cellvalue.includes(222238) || (cellvalue.includes("Jason") && cellvalue.includes("CT")) || (cellvalue.includes("Peter") && cellvalue.includes("MRI"))) {
+  if (cellvalue.includes('고진형') || cellvalue.includes("{MY_PATIENT_IDs}") || (cellvalue.includes("Jason") && cellvalue.includes("CT")) || (cellvalue.includes("Peter") && cellvalue.includes("MRI"))) {
     const sendMsg = UrlFetchApp.fetch(slackUrl, params)
     const respCode = sendMsg.getResponseCode()
     Logger.log(sendMsg)
