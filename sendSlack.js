@@ -1,3 +1,14 @@
+const slackUrls = {
+  "doctor0":"dummy_slack_url",
+  "doctor1":"dummy_slack_url",
+  "doctor2":"dummy_slack_url",
+  "doctor3":"dummy_slack_url",
+};
+
+const mainUrl = "https://hooks.slack.com/services/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"
+
+// ** 이하의 코드는 절대 건들지 말것 **
+
 function sendSlack_range(e) {
   const log = e.range.getSheet()
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -37,12 +48,6 @@ function sendSlack_range(e) {
   const added_date = new Date();
 
   const cellvalue = SpreadsheetApp.getActiveRange().getValue();
-  
-  const slackUrls = {
-    "doctorName1": "SLACK_Webhook_URL1",
-    "doctorName2": "SLACK_Webhook_URL2",
-    "doctorName3": "SLACK_Webhook_URL3"
-  };
 
   for (const trigger in slackUrls) {
     if (cellvalue.includes(trigger)) {
@@ -51,12 +56,13 @@ function sendSlack_range(e) {
         method: "post",
         contentType: "application/json",
         payload: JSON.stringify({
-          "text": "- " + formatted_clinical_date +", " + modality + "\n- " + cellvalue + "\n- 추가한 날짜: " + added_date
+          "text": "- Date: " + formatted_clinical_date +"\n- Modality: " + modality + "\n- Patient Info.: " + cellvalue + "\n- 응콜쌤 기입 날짜: " + added_date
         })
       };
 
       try {
         const response = UrlFetchApp.fetch(slackUrl, params);
+        const response2 = UrlFetchApp.fetch(mainUrl, params);
         Logger.log(`Message sent to ${trigger} channel: ${response.getContentText()}`);
       } catch (error) {
         Logger.log(`Error sending message to ${trigger} channel: ${error}`);
