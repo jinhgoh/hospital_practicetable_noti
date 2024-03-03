@@ -1,11 +1,11 @@
 const slackUrls = {
-  "doctor0":"dummy_slack_url",
+  "doctor0":"dummy_slack_url_main",
   "doctor1":"dummy_slack_url",
   "doctor2":"dummy_slack_url",
   "doctor3":"dummy_slack_url",
 };
 
-const mainUrl = "https://hooks.slack.com/services/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"
+const mainUrl = "dummy_slack_url_main"
 
 // ** 이하의 코드는 절대 건들지 말것 **
 
